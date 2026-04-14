@@ -17,24 +17,44 @@ const ACADEMIC_KNOWLEDGE_BASE = {
     // MATHEMATICS
     // ==========================================
     math: {
-        // Basic Arithmetic (Nursery - Class 2)
+        // Nursery to Class 2 - Very Basic
         nursery_to_2: {
             "what is 1 plus 1": "Step 1: Take 1\nStep 2: Add 1\nFinal Answer: 2",
             "what is 2 plus 2": "Step 1: Take 2\nStep 2: Add 2\nFinal Answer: 4",
             "what is 3 plus 4": "Step 1: Take 3\nStep 2: Add 4\nFinal Answer: 7",
+            "what is 5 plus 5": "Step 1: Take 5\nStep 2: Add 5\nFinal Answer: 10",
+            "what is 10 plus 10": "Step 1: Take 10\nStep 2: Add 10\nFinal Answer: 20",
             "what is 5 minus 3": "Step 1: Take 5\nStep 2: Subtract 3\nFinal Answer: 2",
             "what is 8 minus 3": "Step 1: Take 8\nStep 2: Subtract 3\nFinal Answer: 5",
+            "what is 10 minus 5": "Step 1: Take 10\nStep 2: Subtract 5\nFinal Answer: 5",
             "count from 1 to 10": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+            "count from 1 to 20": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20",
             "what is counting": "Counting means saying numbers in order.",
-            "what is addition": "Addition means adding numbers.",
+            "what is addition": "Addition means adding numbers together.",
             "what is subtraction": "Subtraction means taking away.",
+            "what is multiplication": "Multiplication is repeated addition.",
+            "what is 2 times 3": "Step: 2 + 2 + 2\nFinal Answer: 6",
+            "what is 4 times 2": "Step: 4 + 4\nFinal Answer: 8",
+            "what is division": "Division means equal sharing.",
+            "what is 10 divided by 2": "Final Answer: 5",
             "what is alphabet": "Alphabet is a set of letters from A to Z.",
             "what is vowel": "Vowels are A, E, I, O, U.",
             "what is consonant": "Letters other than vowels are consonants.",
             "what is a word": "A word is a group of letters that has meaning.",
             "what is sentence": "A sentence is a group of words that makes sense.",
+            "what is number": "Numbers are used for counting and measuring.",
+            "what is shape": "Shapes are forms of objects like circle, square, triangle.",
+            "what is circle": "A circle is round with no corners.",
+            "what is square": "A square has 4 equal sides and 4 corners.",
+            "what is triangle": "A triangle has 3 sides and 3 corners.",
+            "what is rectangle": "A rectangle has 4 sides with opposite sides equal.",
             "what is animal": "Animals are living beings that can move.",
-            "what is plant": "Plants grow in soil and need water and sunlight."
+            "what is plant": "Plants grow in soil and need water and sunlight.",
+            "what is color": "Colors are what we see - red, blue, green, yellow, etc.",
+            "what is big": "Big means large in size.",
+            "what is small": "Small means little in size.",
+            "what is tall": "Tall means high from bottom to top.",
+            "what is short": "Short means not tall, low height."
         },
         
         // Elementary (Class 3-5)

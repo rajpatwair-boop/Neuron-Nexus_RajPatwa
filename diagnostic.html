@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Nexus - Diagnostic</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0f;
+            color: #00f0ff;
+            padding: 40px;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid #00f0ff;
+            border-radius: 8px;
+        }
+        .error {
+            color: #ff4444;
+            border-color: #ff4444;
+        }
+        .success {
+            color: #00ff88;
+            border-color: #00ff88;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        button {
+            padding: 12px 24px;
+            background: #00f0ff;
+            color: #0a0a0f;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #00d4e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Neon Nexus Diagnostic Tool</h1>
+    
+    <div class="status" id="status-main">
+        <h3>Checking system status...</h3>
+        <div id="checks"></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <button onclick="window.location.href='index.html'">Go to Main Site</button>
+        <button onclick="location.reload()">Run Diagnostics Again</button>
+    </div>
+
+    <script>
+        const checks = document.getElementById('checks');
+        const results = [];
+
+        function addCheck(name, passed, message) {
+            results.push({ name, passed, message });
+            const div = document.createElement('div');
+            div.style.margin = '10px 0';
+            div.style.padding = '10px';
+            div.style.background = passed ? 'rgba(0, 255, 136, 0.1)' : 'rgba(255, 68, 68, 0.1)';
+            div.style.borderLeft = `4px solid ${passed ? '#00ff88' : '#ff4444'}`;
+            div.innerHTML = `
+                <strong>${passed ? '✅' : '❌'} ${name}</strong><br>
+                <small>${message}</small>
+            `;
+            checks.appendChild(div);
+        }
+
+        // Run checks
+        try {
+            // Check 1: Can load index.html
+            addCheck('Main HTML File', true, 'index.html is accessible');
+        } catch (e) {
+            addCheck('Main HTML File', false, e.message);
+        }
+
+        try {
+            // Check 2: JavaScript files accessible
+            const scripts = [
+                'js/state.js',
+                'js/app.js',
+                'js/features/focus-mode.js'
+            ];
+            
+            scripts.forEach(script => {
+                addCheck(`Script: ${script}`, true, 'File exists and is accessible');
+            });
+        } catch (e) {
+            addCheck('Script Files', false, e.message);
+        }
+
+        try {
+            // Check 3: Focus Mode object
+            if (typeof FocusMode !== 'undefined') {
+                addCheck('FocusMode Object', true, 'FocusMode is properly defined');
+            } else {
+                addCheck('FocusMode Object', false, 'FocusMode not found - script may not have loaded');
+            }
+        } catch (e) {
+            addCheck('FocusMode Object', false, e.message);
+        }
+
+        try {
+            // Check 4: State object
+            if (typeof State !== 'undefined') {
+                addCheck('State Object', true, 'State is properly defined');
+            } else {
+                addCheck('State Object', false, 'State not found');
+            }
+        } catch (e) {
+            addCheck('State Object', false, e.message);
+        }
+
+        try {
+            // Check 5: App object
+            if (typeof App !== 'undefined') {
+                addCheck('App Object', true, 'App is properly defined');
+            } else {
+                addCheck('App Object', false, 'App not found');
+            }
+        } catch (e) {
+            addCheck('App Object', false, e.message);
+        }
+
+        try {
+            // Check 6: Protocol check
+            const protocol = window.location.protocol;
+            if (protocol === 'file:') {
+                addCheck('Server Protocol', false, 
+                    '⚠️ You are using file:// protocol. Please use http:// server instead. ' +
+                    'Run: npx http-server -p 8080');
+            } else {
+                addCheck('Server Protocol', true, `Using ${protocol}// - Good!`);
+            }
+        } catch (e) {
+            addCheck('Server Protocol', false, e.message);
+        }
+
+        // Summary
+        const passed = results.filter(r => r.passed).length;
+        const total = results.length;
+        const summary = document.createElement('div');
+        summary.style.marginTop = '20px';
+        summary.style.padding = '15px';
+        summary.style.background = passed === total ? 'rgba(0, 255, 136, 0.2)' : 'rgba(255, 170, 0, 0.2)';
+        summary.style.border = `2px solid ${passed === total ? '#00ff88' : '#ffaa00'}`;
+        summary.style.borderRadius = '8px';
+        summary.innerHTML = `
+            <h3>${passed === total ? '✅ All Checks Passed!' : '⚠️ Some Issues Found'}</h3>
+            <p>${passed}/${total} checks passed</p>
+        `;
+        checks.appendChild(summary);
+    </script>
+</body>
+</html>

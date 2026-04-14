@@ -282,6 +282,26 @@ const State = {
         
         this.updateXPBar();
         
+        // Show/hide Focus Mode card based on academic level and domain
+        const focusModeCard = document.getElementById('focus-mode-card');
+        if (focusModeCard) {
+            const isCollege = this.user.academicLevel === 'college';
+            const isProgramming = this.user.currentSubject === 'Programming' || 
+                                 this.user.currentCategory === 'C' ||
+                                 this.user.currentCategory === 'Python' ||
+                                 this.user.currentCategory === 'Java' ||
+                                 this.user.currentCategory === 'DSA' ||
+                                 this.user.currentCategory === 'Web Development';
+            
+            if (isCollege && isProgramming) {
+                focusModeCard.style.display = 'block';
+                console.log('Focus Mode card shown (College + Programming)');
+            } else {
+                focusModeCard.style.display = 'none';
+                console.log('Focus Mode card hidden (requirements not met)');
+            }
+        }
+        
         // Notify DNA system of dashboard load
         if (typeof UserDNASystem !== 'undefined') {
             UserDNASystem.onDashboardLoad();

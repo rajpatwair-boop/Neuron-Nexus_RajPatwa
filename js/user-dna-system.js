@@ -308,13 +308,15 @@ const UserDNASystem = {
 
             #dna-system-status {
                 position: fixed;
-                bottom: 60px;
+                bottom: 100px;
                 right: 20px;
                 font-family: 'Orbitron', monospace;
                 font-size: 0.6rem;
                 color: var(--accent-cyan);
                 opacity: 0.4;
                 text-align: right;
+                z-index: 9998;
+                margin-bottom: 10px;
             }
 
             .dna-status-line {
@@ -674,7 +676,8 @@ const UserDNASystem = {
         const messages = {
             dungeon: 'Entering simulation environment...',
             battle: 'Combat mode initialized.',
-            practice: 'Training protocol engaged.'
+            practice: 'Training protocol engaged.',
+            focus: 'Coding environment initialized. Prepare to solve.'
         };
 
         if (messages[mode]) {

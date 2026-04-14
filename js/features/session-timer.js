@@ -44,12 +44,18 @@
             </div>
         `;
 
-        // Add to dashboard header or body
-        const header = document.querySelector('.dashboard-header, .header-top');
-        if (header) {
-            header.insertBefore(timer, header.firstChild);
+        // Add to timer container in header
+        const timerContainer = document.getElementById('timer-container');
+        if (timerContainer) {
+            timerContainer.appendChild(timer);
         } else {
-            document.body.appendChild(timer);
+            // Fallback to old behavior
+            const header = document.querySelector('.dashboard-header, .header-top');
+            if (header) {
+                header.insertBefore(timer, header.firstChild);
+            } else {
+                document.body.appendChild(timer);
+            }
         }
 
         addStyles();
@@ -67,10 +73,6 @@
                 background: rgba(0, 212, 255, 0.08);
                 border: 1px solid rgba(0, 212, 255, 0.2);
                 border-radius: 20px;
-                position: fixed;
-                top: 80px;
-                right: 160px;
-                z-index: 2;
             }
 
             .timer-waveform {

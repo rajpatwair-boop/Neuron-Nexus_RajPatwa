@@ -116,6 +116,16 @@ const ImmersionLayer = {
                 'Progress tracking: Enabled...'
             ],
             tone: 'supportive'
+        },
+        focus: {
+            messages: [
+                'Code compilation environment ready...',
+                'Syntax analysis: Active...',
+                'Problem-solving protocols engaged...',
+                'Debugging systems: Online...',
+                'Execution environment: Stable...'
+            ],
+            tone: 'technical'
         }
     },
 

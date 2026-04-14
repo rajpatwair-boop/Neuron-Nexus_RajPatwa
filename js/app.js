@@ -156,6 +156,7 @@ const App = {
             case 'dungeon':
             case 'battle':
             case 'practice':
+            case 'focus':
                 State.navigateTo('dashboard');
                 State.initDashboard();
                 break;
@@ -844,6 +845,9 @@ const App = {
             case 'practice':
                 this.startPracticeMode();
                 break;
+            case 'focus':
+                this.startFocusMode();
+                break;
         }
     },
     
@@ -1316,6 +1320,25 @@ const App = {
     },
     
     // ==========================================
+    // PHASE 5: FOCUS MODE (CODING PRACTICE)
+    // ==========================================
+    startFocusMode() {
+        console.log('=== STARTING FOCUS MODE ===');
+        State.navigateTo('focus');
+        
+        // Initialize Focus Mode
+        if (typeof FocusMode !== 'undefined') {
+            FocusMode.init();
+        } else {
+            console.error('FocusMode not loaded');
+            State.showModal('Error', 'Focus Mode failed to load. Please refresh the page.', 'OK', () => {
+                State.navigateTo('dashboard');
+                State.initDashboard();
+            });
+        }
+    },
+    
+    // ==========================================
     // EVENT LISTENERS
     // ==========================================
     setupEventListeners() {
@@ -1337,6 +1360,11 @@ const App = {
         document.querySelectorAll('.mode-card').forEach(card => {
             card.addEventListener('click', () => {
                 const mode = card.dataset.mode;
+                // Check if Focus Mode card is visible
+                if (mode === 'focus' && card.style.display === 'none') {
+                    State.showModal('Focus Mode Unavailable', 'Focus Mode is only available for Undergraduate students in Programming domain.');
+                    return;
+                }
                 this.startLearningMode(mode);
             });
         });

@@ -14,9 +14,24 @@
         },
         
         init() {
-            this.injectContactButton();
+            this.setupDropdownContact();
             this.loadEmailJS();
             console.log('📧 Contact System initialized');
+        },
+
+        setupDropdownContact() {
+            // Setup contact button in dropdown menu
+            const contactBtn = document.getElementById('dropdown-contact');
+            if (contactBtn) {
+                contactBtn.addEventListener('click', () => {
+                    this.openContactModal();
+                    // Close dropdown
+                    const dropdown = document.getElementById('user-dropdown');
+                    if (dropdown) {
+                        dropdown.style.display = 'none';
+                    }
+                });
+            }
         },
 
         loadEmailJS() {
